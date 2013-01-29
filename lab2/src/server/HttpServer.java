@@ -2,6 +2,7 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -20,6 +21,8 @@ public class HttpServer{
 	public static void main(String[] args) throws IOException{
 		System.out.println("Skapar Serversocket");
 		ServerSocket ss = new ServerSocket(8080);
+		ArrayList<Session> sessions = new ArrayList<Session>();
+		
 		boolean listening = true;
 		while(listening){
 			System.out.println("Väntar på klient...");
@@ -33,14 +36,22 @@ public class HttpServer{
 					new StringTokenizer(str," ?");
 			tokens.nextToken(); // Ordet GET
 			String requestedDocument = tokens.nextToken();
-			int guess = parseParamString(tokens.nextToken());
-			
+			int guess = getGuessParam(tokens.nextToken());
+			int sessionId = -1;
 			System.out.println("Requested document: " + requestedDocument);
 			while( (str = request.readLine()) != null && str.length() > 0){
-				//System.out.println(str);
+				if (str.startsWith("Cookie: ")) {
+					sessionId = getSessionId(str);
+				}
+				System.out.println(str);
 			}
 			System.out.println("Förfrågan klar.\n");
 			s.shutdownInput();
+			
+			if (sessionId == -1) {
+				sessionId = sessions.size();
+				sessions.add(new Session());
+			}
 
 			PrintStream response =
 					new PrintStream(s.getOutputStream());
@@ -51,7 +62,8 @@ public class HttpServer{
 			if(requestedDocument.indexOf(".gif") != -1)
 				response.println("Content-Type: image/gif");
 
-			response.println("Set-Cookie: clientId=1; expires=Wednesday,31-Dec-13 21:00:00 GMT");
+			response.println("Set-Cookie: clientId=" + sessionId +
+					"; expires=Wednesday,31-Dec-13 21:00:00 GMT");
 
 			response.println();
 			
@@ -72,10 +84,20 @@ public class HttpServer{
 		ss.close();
 	}
 
-	private static int parseParamString(String paramString) {
+	private static int getGuessParam(String paramString) {
 		for (String paramPair : paramString.split("&")) {
 			String[] pair = paramPair.split("=");
 			if (pair[0].equals("guess")) {
+				return Integer.parseInt(pair[1]);
+			}
+		}
+		return -1;
+	}
+	
+	private static int getSessionId(String cookieString) {
+		for (String cookie : cookieString.split(" ")) {
+			String[] pair = cookie.split("=");
+			if (pair[0].equals("clientId")) {
 				return Integer.parseInt(pair[1]);
 			}
 		}
