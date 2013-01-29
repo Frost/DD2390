@@ -48,7 +48,7 @@ public class HttpServer{
 			System.out.println("Förfrågan klar.\n");
 			s.shutdownInput();
 			
-			if (sessionId == -1) {
+			if (sessionId == -1 || sessions.size() <= sessionId) {
 				sessionId = sessions.size();
 				sessions.add(new Session());
 			}
@@ -67,17 +67,33 @@ public class HttpServer{
 
 			response.println();
 			
-			try {
-				File f = new File("."+requestedDocument);
-				FileInputStream infil = new FileInputStream(f);
-				byte[] b = new byte[1024];
-				while( infil.available() > 0){
-					response.write(b,0,infil.read(b));
+			response.println(
+					"<html><body><form action=\"guess.html\" method=\"get\">" +
+					"<p>Guess a number between 1 and 100!</p>");
+			
+			if(guess > 0) {
+				Session session = sessions.get(sessionId);
+				session.numberOfGuesses++;
+				if(session.answer == guess) {
+					response.println("<p>Correct! You won after " + 
+									 session.numberOfGuesses +" tries</p>");
+					sessions.set(sessionId, new Session());
+				} else {
+					if (session.answer < guess) {
+						response.println("<p>Wrong, guess lower!</p>");
+					} else {
+						response.println("<p>Wrong, guess higher!</p>");
+					}
+					response.println("<p>Number of guesses: " + session.numberOfGuesses + "</p>");
 				}
-				infil.close();				
-			} catch (FileNotFoundException e) {
-				System.out.println("File not found:" + e.getStackTrace());
 			}
+			
+			response.println(
+					"<input id=\"guess\" name=\"guess\" type=\"text\">" +
+					"<input type=\"submit\" value=\"Guess!\" /></form>" +
+					"<script>document.getElementById('guess').focus();</script>" +
+					"</body></html>");
+			
 			s.shutdownOutput();
 			s.close();
 		}
