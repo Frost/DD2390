@@ -16,9 +16,11 @@ public class Client {
 	public static void main(String[] args) {
 		Socket socket;
 		try {
-			socket = new Socket("127.0.0.7", 4711);
+			String address = args.length > 0 ? args[0] : "127.0.0.1";
+			socket = new Socket(address, 4711);
 			PrintWriter toServer = new PrintWriter(socket.getOutputStream(), true);
-			BufferedReader fromServer  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			BufferedReader fromServer  = new BufferedReader(
+					new InputStreamReader(socket.getInputStream()));
 
 			BufferedReader fromUser = new BufferedReader(new InputStreamReader(System.in));
 			System.out.print("What is your nickname? ");
