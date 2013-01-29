@@ -20,9 +20,9 @@ public class ClientConnectionHandler {
 		clients.remove(thread);
 	}
 
-	public void sendMessageToAllClients(String line) {
+	public void sendMessageToAllClients(String user, String line) {
 		for (ServerThread client : clients) {
-			client.sendMessageToUser(line);
+			client.sendMessageToUser(user + ": " + line);
 		}
 	}
 }

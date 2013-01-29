@@ -44,7 +44,7 @@ public class ServerThread extends Thread {
 			String line;
 			
 			while((line = fromClient.readLine()) != null) {
-				handler.sendMessageToAllClients(line);
+				handler.sendMessageToAllClients(nickname, line);
 			}
 		} catch (IOException e) {
 			disconnect();
