@@ -1,0 +1,32 @@
+.left {
+  float: left;
+}
+
+table {
+  border-collapse:collapse; 
+  border-spacing: 0;
+  padding: 0px;
+  margin: 0px;
+}
+
+td.card {
+  outline-width: 0px;
+  width: 150px;
+  height: 150px;
+  padding: 0px;
+  margin: 0px;
+}
+
+td.card span {
+  display: table-cell;
+  margin: 0px;
+  padding: 0px;
+  outline-width: 0px;
+  width: 150px;
+  height: 150px;
+  background: url(images/back.jpg) no-repeat;
+}
+
+.card#00 {
+  background: url(images/1.jpg) no-repeat;
+}
