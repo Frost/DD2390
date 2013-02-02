@@ -27,6 +27,10 @@ td.card span {
   background: url(images/back.jpg) no-repeat;
 }
 
+td.card span:hover {
+  background: url(images/active_back.jpg) no-repeat;
+}
+
 .card#00 {
   background: url(images/1.jpg) no-repeat;
 }

@@ -11,35 +11,44 @@
       <table class="memory">
         <tr>
           <td id="00" class="card"><span></span></td>
-          <td id="01" class="card"><img src="images/back.jpg"></td>
-          <td id="02" class="card"><img src="images/back.jpg"></td>
-          <td id="03" class="card"><img src="images/back.jpg"></td>
+          <td id="01" class="card"><span></span></td>
+          <td id="02" class="card"><span></span></td>
+          <td id="03" class="card"><span></span></td>
         </tr>
         <tr>
-          <td id="10" class="card"><img src="images/back.jpg"></td>
-          <td id="11" class="card"><img src="images/back.jpg"></td>
-          <td id="12" class="card"><img src="images/back.jpg"></td>
-          <td id="13" class="card"><img src="images/back.jpg"></td>
+          <td id="10" class="card"><span></span></td>
+          <td id="11" class="card"><span></span></td>
+          <td id="12" class="card"><span></span></td>
+          <td id="13" class="card"><span></span></td>
         </tr>
         <tr>
-          <td id="20" class="card"><img src="images/back.jpg"></td>
-          <td id="21" class="card"><img src="images/back.jpg"></td>
-          <td id="22" class="card"><img src="images/back.jpg"></td>
-          <td id="23" class="card"><img src="images/back.jpg"></td>
+          <td id="20" class="card"><span></span></td>
+          <td id="21" class="card"><span></span></td>
+          <td id="22" class="card"><span></span></td>
+          <td id="23" class="card"><span></span></td>
         </tr>
         <tr>
-          <td id="30" class="card"><img src="images/back.jpg"></td>
-          <td id="31" class="card"><img src="images/back.jpg"></td>
-          <td id="32" class="card"><img src="images/back.jpg"></td>
-          <td id="33" class="card"><img src="images/back.jpg"></td>
+          <td id="30" class="card"><span></span></td>
+          <td id="31" class="card"><span></span></td>
+          <td id="32" class="card"><span></span></td>
+          <td id="33" class="card"><span></span></td>
         </tr>
       </table>
     </div>
 
     <div class="right">
-      <p>Spelare X tur</p>
-      <p>Spelare 1: Y poäng</p>
-      <p>Spelare 2: Z poäng</p>
+      <p>Spelare <span class="current_player"></span>s tur</p>
+      <p>Spelare 1: <span class="player_0_score"></span> poäng</p>
+      <p>Spelare 2: <span class="player_1_score"></span> poäng</p>
     </div>
+
+    <script type="text/javascript">
+      Memory.displayScores();
+      Memory.generateMatrix();
+
+      $('.card span').click(function() {
+        Memory.turnCard(this);
+      });
+    </script>
   </body>
 </html>
