@@ -27,9 +27,7 @@ var Memory = {
   },
   turnCard: function(card) {
     if(this.picks.length === 2) {
-      this.updateBoard();
-      this.displayScores();
-      this.picks = [];
+      this.updateGameState();
       return;
     }
 
@@ -50,6 +48,14 @@ var Memory = {
       this.picks[1].faceDown = false;
     } 
     this.currentPlayer = (this.currentPlayer + 1) % 2;
+  },
+
+  updateGameState: function() {
+    if(this.picks.length == 2) {
+      this.updateBoard();
+      this.displayScores();
+      this.picks = [];
+    }
   },
 
   updateBoard: function() {

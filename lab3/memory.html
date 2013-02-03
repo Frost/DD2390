@@ -46,8 +46,13 @@
       Memory.displayScores();
       Memory.generateMatrix();
 
-      $('.card span').click(function() {
-        Memory.turnCard(this);
+      $('*').click(function(event) {
+        event.stopPropagation();
+        if ($(this).is('.card span')) {
+          Memory.turnCard(this);
+        } else {
+          Memory.updateGameState();
+        }
       });
     </script>
   </body>
