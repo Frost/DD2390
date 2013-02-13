@@ -24,7 +24,7 @@
     <h1>Bostadssök</h1>
     <div>
       <form action="result.php" method="get" id="search_form">
-        <input type="hidden" name="order_by" value="<?php echo($order_param) ?>">
+        <input type="hidden" id="order_by" name="order_by" value="<?php echo($order_param) ?>">
         <p>
           <label for="lan"><span>Län</span>
             <select id="lan" name="lan">
@@ -97,6 +97,7 @@
         return false;
       });
       performAjaxRequest();
+
     </script>
   </body>
 </html>
