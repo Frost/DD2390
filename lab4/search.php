@@ -11,6 +11,8 @@
   $no_rooms = $mysqli->query("select distinct rum from bostader");
   $object_type = $mysqli->query("select distinct objekttyp from bostader");
 
+  $order_param = $_GET['order_by']
+
 ?>
 
 <html>
@@ -22,6 +24,7 @@
     <h1>Bostadssök</h1>
     <div>
       <form action="result.php" method="get" id="search_form">
+        <input type="hidden" name="order_by" value="<?php echo($order_param) ?>">
         <p>
           <label for="lan"><span>Län</span>
             <select id="lan" name="lan">
