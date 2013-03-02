@@ -57,10 +57,10 @@ if(!$ajax_request) {
           <th>Län</th>
           <th>Objekttyp</th>
           <th>Adress</th>
-          <th><a href="<?php echo generate_sort_link('area') ?>">Area</a></th>
-          <th><a href="<?php echo generate_sort_link('rum') ?>">Rum</a></th>
-          <th><a href="<?php echo generate_sort_link('pris') ?>">Pris</a></th>
-          <th><a href="<?php echo generate_sort_link('avgift') ?>">Avgift</a></th>
+          <th><a data-value="area" href="<?php echo generate_sort_link('area') ?>">Area</a></th>
+          <th><a data-value="rum" href="<?php echo generate_sort_link('rum') ?>">Rum</a></th>
+          <th><a data-value="pris" href="<?php echo generate_sort_link('pris') ?>">Pris</a></th>
+          <th><a data-value="avgift" href="<?php echo generate_sort_link('avgift') ?>">Avgift</a></th>
         </tr>
       </thead>
       <tbody>
@@ -80,6 +80,13 @@ if(!$ajax_request) {
         ?>
       </tbody>
     </table>
+<script>
+$('a').click(function(){
+  $('#order_by').attr('value', $(this).data('value'))
+  performAjaxRequest();
+  return false;  
+});
+</script>
 <?php
   if(!$ajax_request) {
     echo "</body></html>";
