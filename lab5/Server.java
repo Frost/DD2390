@@ -22,21 +22,7 @@ public class Server{
 
         BufferedReader infil =
           new BufferedReader(new InputStreamReader(s.getInputStream()));
-
-        /* String rad = null; */
-
-        /* while( (rad=infil.readLine()) != null) */
-          /* System.out.println(rad); */
-        /* infil.close(); */
-
-
         PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream()));
-
-        out.println("HTTPS/1.1 200 OK");
-        out.println("Server :HTTP Slask 0.1 Beta");
-        out.println("Content-Type: text/text");
-
-        out.println();
 
         out.println("hello world");
         out.flush();
