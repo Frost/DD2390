@@ -1,6 +1,26 @@
-h1. Lab1 Socketar och Trådar
+h2. Lab1 Socketar och Trådar
 
-h2. Om *n* klienter är anslutna, hur många trådar behöver 1) Servern 2) Klienten?
+h4. Om *n* klienter är anslutna, hur många trådar behöver 1) Servern 2) Klienten?
 
 # En för servern och en för varje klient, dvs n+1 st.
 # Varje klient behöver bara en tråd.
+
+h3. Extrauppgift
+
+h4. Beskriv de 4 nivåerna i protokollstacken.
+
+* Frame - fysiska lagret, registrerar att något händer på nätverkskortet.
+* Ethernet - länklager, här är ett ip paket.
+* IP-paket - nätverkslagret, det här är ett tcp/udp-paket från ip x till ip y.
+* TCP-paket - transportlagret, innehåller informationen som skickas (tex SYN).
+
+h4. Vad betyder flaggorna ACK, SYN, SEQ och vilket protokoll tillhör de?
+
+Flaggorna tillhör TCP protokollet.
+* SYN - Hej, vill du prata med mig?
+* ACK - Ja (acknowledge).
+* SEQ - Sequence number, så att man kan läsa flera paket i rätt ordning (är inte en flagga).
+
+h4. Vad är skillnaden mellan TCP och UDP?
+
+TCP paket kräver ett kvitto på att de kommit fram, medan UDP paket bara skickas iväg.
