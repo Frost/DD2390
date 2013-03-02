@@ -1,0 +1,1 @@
+lösenord för stores: intnet
