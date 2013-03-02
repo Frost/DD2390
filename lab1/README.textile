@@ -1,0 +1,6 @@
+h1. Lab1 Socketar och Trådar
+
+h2. Om *n* klienter är anslutna, hur många trådar behöver 1) Servern 2) Klienten?
+
+# En för servern och en för varje klient, dvs n+1 st.
+# Varje klient behöver bara en tråd.
