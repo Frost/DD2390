@@ -11,11 +11,6 @@ import java.util.StringTokenizer;
  * @author Cecilia Roes, Martin Frost
  */
 public class HttpServer{
-	// TODO: Make sure it's possible to submit a guess
-	// TODO: Not guessing should not print "YOU MADE IT!"
-	// TODO: The server should not crash
-	// TODO: Below code is ugly :(
-	
 	public static void main(String[] args) throws IOException{
 		System.out.println("Skapar Serversocket");
 		ServerSocket ss = new ServerSocket(8080);
